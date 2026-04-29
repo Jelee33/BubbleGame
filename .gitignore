@@ -40,7 +40,6 @@
 *.sdf
 *.VC.db
 *.VC.opendb
-.vsconfig
 
 # Precompiled Assets
 SourceArt/**/*.png
@@ -73,3 +72,15 @@ Plugins/**/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+Content/LevelPrototyping/
+Content/Low_Poly_Sci-Fi_Corridor/
+Content/ModSci_Engineer/
+Content/ModSci_EngiProps/
+Content/ModSciInteriors/
+Content/SciFi_BioLaboratory/
+Content/StarterContent/
+Content/StylizedProvencal/
+Content/TreatmentStation/
+Content/Animated_Nebulas_Starter_Pack
+Content/Fab
