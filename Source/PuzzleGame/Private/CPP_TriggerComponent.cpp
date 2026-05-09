@@ -28,9 +28,22 @@ void UCPP_TriggerComponent::BeginPlay()
 	}
 	else if (MoverActor == nullptr)
 	{
-		UE_LOG(LogTemp,Warning,TEXT("Mover Actor atamamissin fatihcim neyi hareket ettiricez biz bu objenin adi %s"),*GetOwner()->GetName());
+		UE_LOG(LogTemp,Warning,TEXT("Mover Actor atamamissin fatihcim neyi hareket ettiricez? bu objete mover actor ata %s"),*GetOwner()->GetName());
 	}
 	
+	if (Spawner)
+	{
+		SpawnerComponent = Spawner->FindComponentByClass<UCPP_SpawnerComponent>();
+		
+		if (!SpawnerComponent)
+		{
+			UE_LOG(LogTemp,Warning,TEXT("Spawner Component atamamissin spawner objesine"))
+		}
+	}
+	else if (!Spawner)
+	{
+		UE_LOG(LogTemp,Warning,TEXT("Spawner Actor atamamissin fatihcim neyi spawnlicaz? bu objeye spawner ata %s"),*GetOwner()->GetName());
+	}
 	
 	
 	OnComponentBeginOverlap.AddDynamic(this,&UCPP_TriggerComponent::OnOverlapBegin);
@@ -57,7 +70,11 @@ void UCPP_TriggerComponent::TriggerFunction(bool NewTriggerValue)
 		{
 			MoverComponent->SetShouldMove(IsTriggered);
 		}
-
+	
+		if (SpawnerComponent && IsTriggered)
+		{
+			SpawnerComponent->TriggerSpawn();
+		}
 	
 }
 

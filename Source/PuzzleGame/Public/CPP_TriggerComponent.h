@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "CPP_MoverComponent.h"
 #include "Components/BoxComponent.h"
+#include "CPP_SpawnerComponent.h"
 #include "CPP_TriggerComponent.generated.h"
 
 
@@ -33,7 +34,8 @@ public:
 	
 	UPROPERTY(EditAnywhere,Category= "Spawner")
 	AActor* Spawner;
-	
+
+	UCPP_SpawnerComponent* SpawnerComponent;
 	
 	bool IsTriggered = false;
 	
