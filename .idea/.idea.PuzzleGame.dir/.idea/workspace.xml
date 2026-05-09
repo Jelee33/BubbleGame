@@ -8,18 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="763ec176-dbdd-4df5-b500-56db67eb5340" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/_MyGame/BluePrints/AnimationBluePrints/ABP_Bob.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/_MyGame/BluePrints/AnimationBluePrints/BS_Bob.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_SpawnerComponent.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/PuzzleGame/Public/CPP_SpawnerComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzleGame.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzleGame.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_Fatih/Bob/Walk_Skeleton.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_Fatih/Bob/Walk_Skeleton.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/_MyGame/BluePrints/BP_Bob.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyGame/BluePrints/BP_Bob.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_MyGame/BluePrints/TestWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyGame/BluePrints/TestWorld.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/CPP_Bob.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/CPP_Bob.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_Button.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_Button.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_Laser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_SpawnerComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_SpawnerComponent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_TriggerComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_TriggerComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Public/CPP_TriggerComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Public/CPP_TriggerComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Public/CPP_Button.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Public/CPP_Button.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +165,7 @@
       <workItem from="1777238796686" duration="323000" />
       <workItem from="1778246855928" duration="645000" />
       <workItem from="1778250617096" duration="6002000" />
-      <workItem from="1778326543602" duration="3894000" />
+      <workItem from="1778326543602" duration="8508000" />
     </task>
     <servers />
   </component>

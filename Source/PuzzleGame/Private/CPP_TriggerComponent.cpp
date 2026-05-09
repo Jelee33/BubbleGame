@@ -37,7 +37,7 @@ void UCPP_TriggerComponent::BeginPlay()
 		
 		if (!SpawnerComponent)
 		{
-			UE_LOG(LogTemp,Warning,TEXT("Spawner Component atamamissin spawner objesine"))
+			UE_LOG(LogTemp,Warning,TEXT("Spawner Component atamamissin spawner objesine"));
 		}
 	}
 	else if (!Spawner)
@@ -64,6 +64,9 @@ void UCPP_TriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 
 void UCPP_TriggerComponent::TriggerFunction(bool NewTriggerValue)
 {
+	
+	if (IsTriggered == NewTriggerValue) return;
+	
 	IsTriggered = NewTriggerValue;
 	
 		if (MoverComponent)
@@ -83,6 +86,9 @@ void UCPP_TriggerComponent::TriggerFunction(bool NewTriggerValue)
 void UCPP_TriggerComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
                                            UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	
+	ActivatorCount++;
+	
 	if (!IsTriggered)
 	{
 		TriggerFunction(true);
@@ -92,7 +98,9 @@ void UCPP_TriggerComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, 
 void UCPP_TriggerComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (IsTriggered)
+	ActivatorCount = FMath::Max(0, ActivatorCount - 1);
+	
+	if (IsTriggered && ActivatorCount == 0)
 	{
 		TriggerFunction(false);
 	}

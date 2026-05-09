@@ -204,11 +204,11 @@ void ACPP_Bob::ChangeAmmoInput()
 	{
 		case EBProjectileBubbleType::Repulsor:
 			CurrentBubbleType = EBProjectileBubbleType::Sticky;
-			UE_LOG(LogTemp,Warning,TEXT("Bubble Type %s"),*UEnum::GetValueAsString(CurrentBubbleType))
+			UE_LOG(LogTemp,Warning,TEXT("Bubble Type %s"),*UEnum::GetValueAsString(CurrentBubbleType));
 			break;
 		case EBProjectileBubbleType::Sticky:
 			CurrentBubbleType = EBProjectileBubbleType::Repulsor;
-			UE_LOG(LogTemp,Warning,TEXT("Bubble Type %s"),*UEnum::GetValueAsString(CurrentBubbleType))
+			UE_LOG(LogTemp,Warning,TEXT("Bubble Type %s"),*UEnum::GetValueAsString(CurrentBubbleType));
 			break;
 		
 		default:
@@ -318,7 +318,6 @@ void ACPP_Bob::MoveObjectInput()
 		if (GetWorld()->LineTraceSingleByChannel(HitResult,Start,End,ECC_Visibility,ObjectParams))
 		{
 			
-			UE_LOG(LogTemp,Warning,TEXT("%s"),*HitResult.GetComponent()->GetName());
 			if(HitResult.GetComponent() && HitResult.GetComponent()->IsSimulatingPhysics())
 			{
 				AActor* Object = HitResult.GetActor();

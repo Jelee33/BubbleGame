@@ -37,6 +37,7 @@ void UCPP_SpawnerComponent::TriggerSpawn()
 	if (!IsValid(ObjectToSpawn))
 	{
 		UE_LOG(LogTemp, Error, TEXT("SPAWN OLCAK OBJEYI ATAAA"));
+		return;
 	}
 	
 	if (IsValid(CurrentSpawnedObject))

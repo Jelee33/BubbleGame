@@ -36,11 +36,14 @@ void ACPP_Button::Tick(float DeltaTime)
 
 void ACPP_Button::OnLaserHit_Implementation(FVector HitLocation, FVector HitNormal, class ACPP_Laser* LaserActor)
 {
+	if (IsLaserHit == true) return;
 	
 	if (TriggerComponent)
 	{
+		IsLaserHit = true;
 		TriggerComponent->TriggerFunction(true);
-		UE_LOG(LogTemp,Warning,TEXT("Laser degıyor"))
+		UE_LOG(LogTemp,Warning,TEXT("Laser degıyor"));
+
 	}
 		
 	
@@ -54,6 +57,8 @@ void ACPP_Button::OnLaserEnd_Implementation(class ACPP_Laser* LaserActor)
 	if (TriggerComponent)
 	{
 		TriggerComponent->TriggerFunction(false);
+		IsLaserHit = false;
+
 	}
 }
 
