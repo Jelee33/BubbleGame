@@ -28,11 +28,14 @@ public:
 	UCPP_TriggerComponent* TriggerComponent;
 	
 	
+	bool IsLaserHit = false;
+	
 	virtual void OnLaserHit_Implementation(FVector HitLocation, FVector HitNormal, class ACPP_Laser* LaserActor) override;
 	
 	virtual void OnLaserEnd_Implementation(class ACPP_Laser* LaserActor) override;
 	
 	virtual bool ShouldReflectLaser_Implementation() override;
+	
 	
 
 };

@@ -74,7 +74,6 @@ void ACPP_Laser::Laser()
 				// Interfacenin oldugu ama lazerin yansitilmasina izin verilmeyen objeler trigger buraya eklenecek
 				else
 				{
-					LaserPoints.Add(OutHit.Location);
 					break;
 				}
 			}
@@ -82,7 +81,6 @@ void ACPP_Laser::Laser()
 			// Interfacenin olmadigi objeler (lazer kesilecek)
 			else
 			{
-				LaserPoints.Add(OutHit.Location);
 				break;
 			}
 		

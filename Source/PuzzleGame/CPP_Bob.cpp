@@ -26,11 +26,12 @@ ACPP_Bob::ACPP_Bob()
 	HoldPoint = CreateDefaultSubobject<USceneComponent>(TEXT("HoldPoint"));
 	HoldPoint->SetupAttachment(Camera);
 	
-	GunMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("GunMesh"));
+	GunMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("GunMesh1"));
 	GunMesh->SetupAttachment(Camera);
 	
 	BubbleSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("BubbleSpawnPoint"));
 	BubbleSpawnPoint->SetupAttachment(GunMesh);
+	
 	
 	
 
@@ -156,9 +157,9 @@ void ACPP_Bob::FireInput()
 	 	UE_LOG(LogTemp,Warning,TEXT("KOK"));
 		 return;
 	 }
+	
 
-
-
+	
 	
 	FVector Start = Camera->GetComponentLocation();
 	FVector End = Camera->GetForwardVector() * 50000.0f + Start;
@@ -171,12 +172,17 @@ void ACPP_Bob::FireInput()
 	CollisionQueryParams.AddIgnoredActor(this);
 	
 	FHitResult HitResult;
+	
+
+
 	if (bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult,Start,End,ECC_Visibility,CollisionQueryParams))
 	{
 		if (ACPP_MainBubble* MainBubble = GetWorld()->SpawnActor<ACPP_MainBubble>(CurrentBubbleClass,SpawnLocation,SpawnRotation))
 		{
 			MainBubble->SetOwner(this);
 			ActiveBubbles.Add(MainBubble);
+			UE_LOG(LogPlayerInput, Log, TEXT("bubblespawnoluyor"));
+
 		}
 	}
 	
@@ -198,11 +204,11 @@ void ACPP_Bob::ChangeAmmoInput()
 	{
 		case EBProjectileBubbleType::Repulsor:
 			CurrentBubbleType = EBProjectileBubbleType::Sticky;
-			UE_LOG(LogTemp,Warning,TEXT("Bubble Type %s"),*UEnum::GetValueAsString(CurrentBubbleType))
+			UE_LOG(LogTemp,Warning,TEXT("Bubble Type %s"),*UEnum::GetValueAsString(CurrentBubbleType));
 			break;
 		case EBProjectileBubbleType::Sticky:
 			CurrentBubbleType = EBProjectileBubbleType::Repulsor;
-			UE_LOG(LogTemp,Warning,TEXT("Bubble Type %s"),*UEnum::GetValueAsString(CurrentBubbleType))
+			UE_LOG(LogTemp,Warning,TEXT("Bubble Type %s"),*UEnum::GetValueAsString(CurrentBubbleType));
 			break;
 		
 		default:
@@ -312,7 +318,6 @@ void ACPP_Bob::MoveObjectInput()
 		if (GetWorld()->LineTraceSingleByChannel(HitResult,Start,End,ECC_Visibility,ObjectParams))
 		{
 			
-			UE_LOG(LogTemp,Warning,TEXT("%s"),*HitResult.GetComponent()->GetName());
 			if(HitResult.GetComponent() && HitResult.GetComponent()->IsSimulatingPhysics())
 			{
 				AActor* Object = HitResult.GetActor();

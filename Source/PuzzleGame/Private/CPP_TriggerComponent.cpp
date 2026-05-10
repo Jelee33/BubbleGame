@@ -28,9 +28,22 @@ void UCPP_TriggerComponent::BeginPlay()
 	}
 	else if (MoverActor == nullptr)
 	{
-		UE_LOG(LogTemp,Warning,TEXT("Mover Actor atamamissin fatihcim neyi hareket ettiricez biz bu objenin adi %s"),*GetOwner()->GetName());
+		UE_LOG(LogTemp,Warning,TEXT("Mover Actor atamamissin fatihcim neyi hareket ettiricez? bu objete mover actor ata %s"),*GetOwner()->GetName());
 	}
 	
+	if (Spawner)
+	{
+		SpawnerComponent = Spawner->FindComponentByClass<UCPP_SpawnerComponent>();
+		
+		if (!SpawnerComponent)
+		{
+			UE_LOG(LogTemp,Warning,TEXT("Spawner Component atamamissin spawner objesine"));
+		}
+	}
+	else if (!Spawner)
+	{
+		UE_LOG(LogTemp,Warning,TEXT("Spawner Actor atamamissin fatihcim neyi spawnlicaz? bu objeye spawner ata %s"),*GetOwner()->GetName());
+	}
 	
 	
 	OnComponentBeginOverlap.AddDynamic(this,&UCPP_TriggerComponent::OnOverlapBegin);
@@ -51,13 +64,20 @@ void UCPP_TriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType, 
 
 void UCPP_TriggerComponent::TriggerFunction(bool NewTriggerValue)
 {
+	
+	if (IsTriggered == NewTriggerValue) return;
+	
 	IsTriggered = NewTriggerValue;
 	
 		if (MoverComponent)
 		{
 			MoverComponent->SetShouldMove(IsTriggered);
 		}
-
+	
+		if (SpawnerComponent && IsTriggered)
+		{
+			SpawnerComponent->TriggerSpawn();
+		}
 	
 }
 
@@ -66,6 +86,9 @@ void UCPP_TriggerComponent::TriggerFunction(bool NewTriggerValue)
 void UCPP_TriggerComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
                                            UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	
+	ActivatorCount++;
+	
 	if (!IsTriggered)
 	{
 		TriggerFunction(true);
@@ -75,7 +98,9 @@ void UCPP_TriggerComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, 
 void UCPP_TriggerComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (IsTriggered)
+	ActivatorCount = FMath::Max(0, ActivatorCount - 1);
+	
+	if (IsTriggered && ActivatorCount == 0)
 	{
 		TriggerFunction(false);
 	}
