@@ -315,7 +315,7 @@ void ACPP_Bob::MoveObjectInput()
 		ObjectParams.AddIgnoredActor(this);
 		FHitResult HitResult;
 
-		if (GetWorld()->LineTraceSingleByChannel(HitResult,Start,End,ECC_Visibility,ObjectParams))
+		if (GetWorld()->LineTraceSingleByChannel(HitResult,Start,End,ECC_PhysicsBody,ObjectParams))
 		{
 			
 			if(HitResult.GetComponent() && HitResult.GetComponent()->IsSimulatingPhysics())

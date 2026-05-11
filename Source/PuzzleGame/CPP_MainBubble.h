@@ -70,10 +70,11 @@ public:
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 	
 	virtual void OnDetonate();
-
-	private:
+	
 	UPROPERTY(EditAnywhere)
-	 float LaunchPower = 500;
+	float LaunchPower = 500;
+	private:
+
 	
 
 
