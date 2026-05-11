@@ -54,6 +54,11 @@ void ACPP_MainBubble::BeginPlay()
 		StartScale = BubbleData->StartScaleDATA; 
 		EndScale = BubbleData->EndScaleDATA;
 	}
+	if (VisualMesh)
+	{
+		OriginalVisualMeshScale = VisualMesh->GetRelativeScale3D();
+		TargetVisualMeshScale = OriginalVisualMeshScale;
+	}
 	
 	SetActorScale3D(FVector(StartScale));
 
@@ -77,11 +82,64 @@ void ACPP_MainBubble::Tick(float DeltaTime)
 			SetActorTickEnabled(false);
 		}
 	}
+	
+	if (bIsFlattening && VisualMesh)
+	{
+		const FVector NewMeshScale = FMath::VInterpTo(VisualMesh->GetRelativeScale3D(),
+			TargetVisualMeshScale,
+			DeltaTime,
+			FlattenInterpSpeed);
+	
+	
+		VisualMesh->SetRelativeScale3D(NewMeshScale);
+		
+		if (NewMeshScale.Equals(TargetVisualMeshScale,0.1f))
+		{
+			VisualMesh->SetRelativeScale3D(TargetVisualMeshScale);
+			bIsFlattening = false;
+		}
+		
+	}
+	
+	if (!IsGrowing && !bIsFlattening)
+	{
+		SetActorTickEnabled(false);
+	}
+	
 
 }
 
+void ACPP_MainBubble::ApplySurfaceFlatten(const FHitResult& Hit)
+{
+	if (!bFlattenOnAttach || !VisualMesh)
+	{
+		return;
+	}
+	const FVector SurfaceNormal = Hit.ImpactNormal.GetSafeNormal();
+	
+	const FRotator SurfaceRotion = FRotationMatrix::MakeFromZ(SurfaceNormal).Rotator();
+	SetActorRotation(SurfaceRotion);
+	
+	const float FlattenHalfHeight = BubbleVisualRadius * EndScale * FlattenZScale;
+	
+	const float OffsetFromSurface = FMath::Max(1.f, FlattenHalfHeight - SurfaceSinkAmount);
+	
+	const FVector NewLocation = Hit.ImpactPoint + SurfaceNormal * OffsetFromSurface;
+	SetActorLocation(NewLocation);
+	
+	
+	TargetVisualMeshScale = FVector(
+		OriginalVisualMeshScale.X * FlattenXYScale,
+		OriginalVisualMeshScale.Y * FlattenXYScale,
+		OriginalVisualMeshScale.Z * FlattenZScale
+		);
+	
+	bIsFlattening = true;
+	SetActorTickEnabled(true);
+}
+
 void ACPP_MainBubble::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
-	FVector NormalImpulse, const FHitResult& Hit)
+                            FVector NormalImpulse, const FHitResult& Hit)
 {
 	if (!OtherActor) return;
 	
@@ -106,6 +164,7 @@ void ACPP_MainBubble::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActo
 	IsAttached = true;
 	
 	SavedSurfaceNormal = Hit.Normal;
+	ApplySurfaceFlatten(Hit);
 	
 	IsGrowing = true;
 	SetActorTickEnabled(true);

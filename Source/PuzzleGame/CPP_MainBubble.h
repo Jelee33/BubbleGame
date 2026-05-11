@@ -63,6 +63,33 @@ public:
 	
 	FVector SavedSurfaceNormal;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bubble Visual|Flatten")
+	bool bFlattenOnAttach = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bubble Visual|Flatten")
+	float FlattenXYScale = 1.25f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bubble Visual|Flatten")
+	float FlattenZScale = 0.55f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bubble Visual|Flatten")
+	float BubbleVisualRadius = 50.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bubble Visual|Flatten")
+	float SurfaceSinkAmount = 6.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Bubble Visual|Flatten")
+	float FlattenInterpSpeed = 10.f;
+
+	FVector OriginalVisualMeshScale = FVector::OneVector;
+	FVector TargetVisualMeshScale = FVector::OneVector;
+
+	bool bIsFlattening = false;
+
+	void ApplySurfaceFlatten(const FHitResult& Hit);
+	
+	
+	
 
 	
 	
