@@ -56,7 +56,7 @@ void ACPP_RepulsorBubble::OverlapBegin(UPrimitiveComponent* OverlappedComponent,
 			Player->LaunchCharacter(LaunchForce,true,true );
 			
 		}
-		else if (OtherComp->IsSimulatingPhysics())
+		else if (OtherComp && OtherComp->IsSimulatingPhysics())
 		{
 
 
@@ -64,6 +64,49 @@ void ACPP_RepulsorBubble::OverlapBegin(UPrimitiveComponent* OverlappedComponent,
 			OtherComp->SetPhysicsLinearVelocity(LaunchForce);
 
 			
+		}
+		else
+		{
+			AActor* AttachedActor = GetAttachParentActor();
+
+			if (AttachedActor && AttachedActor != OtherActor)
+			{
+				UPrimitiveComponent* AttachedPrimitive = Cast<UPrimitiveComponent>(AttachedActor->GetRootComponent());
+
+				if (!AttachedPrimitive || !AttachedPrimitive->IsSimulatingPhysics())
+				{
+					TArray<UPrimitiveComponent*> PrimitiveComponents;
+					AttachedActor->GetComponents<UPrimitiveComponent>(PrimitiveComponents);
+
+					for (UPrimitiveComponent* Prim : PrimitiveComponents)
+					{
+						if (Prim && Prim->IsSimulatingPhysics())
+						{
+							AttachedPrimitive = Prim;
+							break;
+						}
+					}
+				}
+
+				if (AttachedPrimitive && AttachedPrimitive->IsSimulatingPhysics())
+				{
+					FVector AttachedLaunchDirection = -SavedSurfaceNormal.GetSafeNormal();
+
+					if (AttachedLaunchDirection.IsNearlyZero())
+					{
+						AttachedLaunchDirection = FVector::UpVector;
+					}
+
+					AttachedLaunchDirection.Z = FMath::Max(AttachedLaunchDirection.Z, 0.45f);
+					AttachedLaunchDirection = AttachedLaunchDirection.GetSafeNormal();
+
+					FVector AttachedLaunchForce = AttachedLaunchDirection * FMath::Max(MaxVelocity, MinLaunchForce);
+
+					AttachedPrimitive->SetPhysicsLinearVelocity(AttachedLaunchForce, false);
+
+					UE_LOG(LogTemp, Warning, TEXT("Attached physics actor launched: %s"), *AttachedActor->GetName());
+				}
+			}
 		}
 		
 		

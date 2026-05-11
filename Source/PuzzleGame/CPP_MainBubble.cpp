@@ -181,6 +181,9 @@ void ACPP_MainBubble::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActo
 		Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly); 
 		Sphere->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 		Sphere->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Overlap);
+		Sphere->SetGenerateOverlapEvents(true);
+		Sphere->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Overlap);
+		Sphere->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
 		Sphere->UpdateOverlaps();
 	}
 	
