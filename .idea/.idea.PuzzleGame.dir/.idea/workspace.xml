@@ -9,10 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="763ec176-dbdd-4df5-b500-56db67eb5340" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzleGame.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzleGame.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_RepulsorBubble.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_RepulsorBubble.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_SpawnerComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_SpawnerComponent.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +39,13 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Uproject.PuzzleGame.executor": "Run",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "BugFix4",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
@@ -62,10 +62,10 @@
         <option name="CONFIGURATION" value="DebugGame Editor" />
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
-        <option name="EXECUTABLE_PATH" value="$PROJECT_DIR$/../../Program Files/Epic Games/UE_5.5/Engine/Binaries/Win64/UnrealEditor-Win64-DebugGame.exe" />
-        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Unreal Projects\PuzzleGameUNREAL\PuzzleGame.uproject&quot;" />
+        <option name="EXECUTABLE_PATH" value="D:/Unreal_Engine/UE_5.5/Engine/Binaries/Win64/UnrealEditor-Win64-DebugGame.exe" />
+        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;E:\AAPROJELER\Unreal_Engine\BubbleGame\PuzzleGame.uproject&quot;" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
-        <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
+        <option name="WORKING_DIRECTORY" value="D:/Unreal_Engine/UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
         <option name="USE_EXTERNAL_CONSOLE" value="1" />
         <option name="TERMINAL_INTERACTION_BEHAVIOR" value="FORCE_CONSOLE" />
@@ -78,7 +78,7 @@
         <option name="EXECUTABLE_PATH" value="$PROJECT_DIR$/Binaries/Win64/PuzzleGame-Win64-DebugGame.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
-        <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
+        <option name="WORKING_DIRECTORY" value="D:/Unreal_Engine/UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
         <option name="USE_EXTERNAL_CONSOLE" value="1" />
         <option name="TERMINAL_INTERACTION_BEHAVIOR" value="FORCE_CONSOLE" />
@@ -88,10 +88,10 @@
         <option name="CONFIGURATION" value="Development Editor" />
         <option name="PLATFORM" value="Win64" />
         <option name="CURRENT_LAUNCH_PROFILE" value="Local" />
-        <option name="EXECUTABLE_PATH" value="$PROJECT_DIR$/../../Program Files/Epic Games/UE_5.5/Engine/Binaries/Win64/UnrealEditor.exe" />
-        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;C:\Unreal Projects\PuzzleGameUNREAL\PuzzleGame.uproject&quot;" />
+        <option name="EXECUTABLE_PATH" value="D:/Unreal_Engine/UE_5.5/Engine/Binaries/Win64/UnrealEditor.exe" />
+        <option name="MANDATORY_PROGRAM_PARAMETERS" value=" &quot;E:\AAPROJELER\Unreal_Engine\BubbleGame\PuzzleGame.uproject&quot;" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
-        <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
+        <option name="WORKING_DIRECTORY" value="D:/Unreal_Engine/UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
         <option name="USE_EXTERNAL_CONSOLE" value="1" />
         <option name="TERMINAL_INTERACTION_BEHAVIOR" value="FORCE_CONSOLE" />
@@ -104,7 +104,7 @@
         <option name="EXECUTABLE_PATH" value="$PROJECT_DIR$/Binaries/Win64/PuzzleGame.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
-        <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
+        <option name="WORKING_DIRECTORY" value="D:/Unreal_Engine/UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
         <option name="USE_EXTERNAL_CONSOLE" value="1" />
         <option name="TERMINAL_INTERACTION_BEHAVIOR" value="FORCE_CONSOLE" />
@@ -117,7 +117,7 @@
         <option name="EXECUTABLE_PATH" value="$PROJECT_DIR$/Binaries/Win64/PuzzleGame-Win64-Shipping.exe" />
         <option name="MANDATORY_PROGRAM_PARAMETERS" value="" />
         <option name="CUSTOM_PROGRAM_PARAMETERS" value="" />
-        <option name="WORKING_DIRECTORY" value="C:\Program Files\Epic Games\UE_5.5" />
+        <option name="WORKING_DIRECTORY" value="D:/Unreal_Engine/UE_5.5" />
         <option name="PASS_PARENT_ENVS" value="1" />
         <option name="USE_EXTERNAL_CONSOLE" value="1" />
         <option name="TERMINAL_INTERACTION_BEHAVIOR" value="FORCE_CONSOLE" />
@@ -162,6 +162,7 @@
       <workItem from="1778246855928" duration="645000" />
       <workItem from="1778250617096" duration="6002000" />
       <workItem from="1778326543602" duration="8508000" />
+      <workItem from="1778546179531" duration="866000" />
     </task>
     <servers />
   </component>
