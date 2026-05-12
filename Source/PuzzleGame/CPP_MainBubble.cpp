@@ -162,9 +162,12 @@ void ACPP_MainBubble::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActo
 	if (IsAttached || !OtherActor || OtherActor == GetOwner() || OtherActor == this ) return;
 	
 	IsAttached = true;
-	
-	SavedSurfaceNormal = Hit.Normal;
-	ApplySurfaceFlatten(Hit);
+    
+    AttachedToActor = OtherActor;
+    AttachedToComp = OtherComp;
+    
+    SavedSurfaceNormal = Hit.Normal;
+    ApplySurfaceFlatten(Hit);
 	
 	IsGrowing = true;
 	SetActorTickEnabled(true);
@@ -178,10 +181,20 @@ void ACPP_MainBubble::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActo
 	
 	if (Sphere)
 	{
-		Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly); 
-		Sphere->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
-		Sphere->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Overlap);
-		Sphere->UpdateOverlaps();
+		if (Sphere)
+		{
+			Sphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+			Sphere->SetGenerateOverlapEvents(true);
+
+			Sphere->SetCollisionResponseToAllChannels(ECR_Ignore);
+
+			Sphere->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+			Sphere->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Overlap);
+			Sphere->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Overlap);
+			Sphere->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
+
+			Sphere->UpdateOverlaps();
+		}
 	}
 	
 

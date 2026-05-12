@@ -34,7 +34,7 @@ void ACPP_RepulsorBubble::OverlapBegin(UPrimitiveComponent* OverlappedComponent,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	
-	if (!IsAttached || OtherActor == nullptr || OtherActor == GetAttachParentActor())
+	if (!IsAttached || OtherActor == nullptr || OtherActor == AttachedToActor)
 	{
 		return;
 	}
@@ -65,7 +65,34 @@ void ACPP_RepulsorBubble::OverlapBegin(UPrimitiveComponent* OverlappedComponent,
 
 			
 		}
-		
+		else
+		{
+			// Bubble küpe yapıştıysa ve bubble yere/duvara değdiyse,
+			// OtherActor zemin olur. Fırlatmamız gereken şey zemin değil,
+			// bubble'ın yapıştığı küptür.
+
+			if (AttachedToComp && AttachedToComp->IsSimulatingPhysics())
+			{
+				FVector AttachedLaunchDirection = -SavedSurfaceNormal.GetSafeNormal();
+
+				if (AttachedLaunchDirection.IsNearlyZero())
+				{
+					AttachedLaunchDirection = FVector::UpVector;
+				}
+
+				// Küpün altına yapışınca yukarı sektirmeyi garantiye al.
+				AttachedLaunchDirection.Z = FMath::Max(AttachedLaunchDirection.Z, 0.55f);
+				AttachedLaunchDirection = AttachedLaunchDirection.GetSafeNormal();
+
+				FVector AttachedLaunchForce = AttachedLaunchDirection * FMath::Max(MaxVelocity, MinLaunchForce);
+
+				AttachedToComp->SetPhysicsLinearVelocity(AttachedLaunchForce, false);
+
+				UE_LOG(LogTemp, Warning, TEXT("Repulsor launched ATTACHED cube: %s Force: %s"),
+					*AttachedToActor->GetName(),
+					*AttachedLaunchForce.ToString());
+			}
+		}
 		
 
 	}
