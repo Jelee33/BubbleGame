@@ -8,11 +8,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="763ec176-dbdd-4df5-b500-56db67eb5340" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/_MyGame/Input/IA_RotateObject.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/_MyGame/UI/Widgets/Textures/poster2.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PuzzleGame.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PuzzleGame.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_MyGame/BluePrints/BP_RepulsorBubble.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyGame/BluePrints/BP_RepulsorBubble.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_MyGame/BluePrints/TestWorld.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyGame/BluePrints/TestWorld.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_MyGame/Input/IMC_Default.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyGame/Input/IMC_Default.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/_MyGame/UI/Widgets/WBP_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_MyGame/UI/Widgets/WBP_MainMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/CPP_Bob.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/CPP_Bob.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/CPP_Bob.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/CPP_Bob.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/CPP_MainBubble.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_RepulsorBubble.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_RepulsorBubble.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_SpawnerComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_SpawnerComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_StickyBubble.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Private/CPP_StickyBubble.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PuzzleGame/Public/CPP_RepulsorBubble.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PuzzleGame/Public/CPP_RepulsorBubble.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

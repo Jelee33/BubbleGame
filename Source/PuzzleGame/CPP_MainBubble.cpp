@@ -74,12 +74,13 @@ void ACPP_MainBubble::Tick(float DeltaTime)
 		CurrentScale = FMath::FInterpConstantTo(CurrentScale,EndScale,DeltaTime,GrowSpeed);
 		SetActorScale3D(FVector(CurrentScale));
 		
-		if (FMath::IsNearlyEqual(CurrentScale,EndScale,0.01f))
+		if (FMath::IsNearlyEqual(CurrentScale, EndScale, 0.01f))
 		{
 			CurrentScale = EndScale;
 			SetActorScale3D(FVector(EndScale));
 			IsGrowing = false;
-			SetActorTickEnabled(false);
+
+			// Burada Tick kapatma. Aşağıdaki final kontrol karar versin.
 		}
 	}
 	
@@ -101,7 +102,7 @@ void ACPP_MainBubble::Tick(float DeltaTime)
 		
 	}
 	
-	if (!IsGrowing && !bIsFlattening)
+	if (!IsGrowing && !bIsFlattening && !IsAttached)
 	{
 		SetActorTickEnabled(false);
 	}

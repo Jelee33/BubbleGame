@@ -106,6 +106,7 @@ void ACPP_Bob::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		EnhancedInputComponent->BindAction(ChangeAmmoAction,ETriggerEvent::Started, this, &ACPP_Bob::ChangeAmmoInput);
 		EnhancedInputComponent->BindAction(DetonateAction,ETriggerEvent::Started,this,&ACPP_Bob::DetonateInput);
 		EnhancedInputComponent->BindAction(MoveObjectAction,ETriggerEvent::Started,this,&ACPP_Bob::MoveObjectInput);
+		EnhancedInputComponent->BindAction(RotateHeldObjectAction,ETriggerEvent::Triggered,this,&ACPP_Bob::RotateHeldObjectInput);
 	}
 
 }
@@ -340,9 +341,17 @@ void ACPP_Bob::MoveObjectInput()
 
 				FVector ObjectLocation = Object->GetActorLocation();
 				
-				FRotator ObjectRotation = Object->GetActorRotation();
-				
-				PhysicsHandleComponent->GrabComponentAtLocationWithRotation(ObjectComponent,NAME_None,ObjectLocation,ObjectRotation);
+				FRotator ObjectRotation = ObjectComponent->GetComponentRotation();
+
+				HeldObjectRotation = ObjectRotation;
+
+				PhysicsHandleComponent->GrabComponentAtLocationWithRotation(
+					ObjectComponent,
+					NAME_None,
+					ObjectLocation,
+					HeldObjectRotation
+				);
+
 				IsHolding = true;
 				
 			}
@@ -360,8 +369,36 @@ void ACPP_Bob::ReleaseHoldObject()
 
 void ACPP_Bob::SetObjectLocationRotation()
 {
-	if (IsHolding)
+	if (IsHolding && PhysicsHandleComponent && PhysicsHandleComponent->GetGrabbedComponent())
 	{
-		PhysicsHandleComponent->SetTargetLocationAndRotation(HoldPoint->GetComponentLocation(),HoldPoint->GetComponentRotation());
+		PhysicsHandleComponent->SetTargetLocationAndRotation(
+			HoldPoint->GetComponentLocation(),
+			HeldObjectRotation
+		);
 	}
+}
+
+void ACPP_Bob::RotateHeldObjectInput(const FInputActionValue& Value)
+{
+	if (!IsHolding || !PhysicsHandleComponent || !PhysicsHandleComponent->GetGrabbedComponent())
+	{
+		return;
+	}
+
+	const float WheelValue = Value.Get<float>();
+
+	if (FMath::IsNearlyZero(WheelValue))
+	{
+		return;
+	}
+
+	// Mouse wheel yukarı: +Yaw
+	// Mouse wheel aşağı: -Yaw
+	HeldObjectRotation.Yaw += WheelValue * HeldObjectRotationStep;
+	HeldObjectRotation.Normalize();
+
+	PhysicsHandleComponent->SetTargetLocationAndRotation(
+		HoldPoint->GetComponentLocation(),
+		HeldObjectRotation
+	);
 }
