@@ -85,7 +85,6 @@ public:
 	FVector TargetVisualMeshScale = FVector::OneVector;
 
 	bool bIsFlattening = false;
-	
 	UPROPERTY()
     AActor* AttachedToActor = nullptr;
     

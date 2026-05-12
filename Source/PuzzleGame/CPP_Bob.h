@@ -53,7 +53,10 @@ public:
 	
 	UPROPERTY(EditAnywhere, Category = "Input")
 	UInputAction* DetonateAction;
-
+	
+	UPROPERTY(EditAnywhere, Category = "Input")
+	UInputAction* RotateHeldObjectAction;
+	
 	UPROPERTY()
 	TArray<ACPP_MainBubble*> ActiveBubbles;
 	
@@ -87,6 +90,12 @@ public:
 	UPROPERTY(EditAnywhere)
 	UBubbleSettings* BubbleSettings;
 	
+	UPROPERTY(EditAnywhere, Category="Object Hold")
+	float HeldObjectRotationStep = 15.f;
+	
+
+	FRotator HeldObjectRotation;
+	
 	int32 MaxBubble =8;
 	
  	bool IsHolding = false;
@@ -105,5 +114,6 @@ public:
 	void MoveObjectInput();
 	void ReleaseHoldObject();
 	void SetObjectLocationRotation();
+	void RotateHeldObjectInput(const FInputActionValue& Value);
 
 };
